@@ -1,0 +1,91 @@
+/* 重置浏览器默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    color: #333;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    flex: 1; /* 使main内容占据剩余空间 */
+}
+
+.intro {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.intro h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.box h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.box a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.box a:hover {
+    background-color: #0056b3;
+}
+
+.box p {
+    color: #666;
+    margin-top: 10px;
+}
+
+footer {
+    background-color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto; /* 将footer推到底部 */
+    border-radius: 4px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
