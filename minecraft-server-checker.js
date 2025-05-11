@@ -102,8 +102,22 @@ function initMinecraftServerChecker(config = {}) {
     // 设置样式
     const style = document.createElement('style');
     style.textContent = `
+        @font-face {
+            font-family: 'Minecraft_English';
+            src: url('https://craftblockht6x.github.io/Minecraft_English.otf');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Minecraft_Chinese';
+            src: url('https://craftblockht6x.github.io/Minecraft_Chinese.ttf');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
         .minecraft-server-checker {
-            font-family: 'Minecraft', 'Minecraftia', monospace;
+            font-family: 'Minecraft_English', 'Minecraft_Chinese', monospace;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
