@@ -76,7 +76,7 @@ function initMinecraftServerChecker(config = {}) {
 
     // 创建HTML内容
     const htmlContent = `
-        <div id="${containerId}" class="container">
+        <div id="${containerId}" class="minecraft-server-checker container">
             ${allowUserInput ? `
             <div class="controls" id="server-form-container">
                 <form id="server-form">
@@ -90,101 +90,48 @@ function initMinecraftServerChecker(config = {}) {
             </div>
         </div>
     `;
-
-    // 查找容器并插入HTML
-    const container = document.getElementById(containerId) || document.querySelector(`#${containerId}`);
-    if (!container) {
-        console.error(`未找到容器元素 #${containerId}`);
-        return;
-    }
-    container.innerHTML = htmlContent;
-
+    
     // 设置样式
     const style = document.createElement('style');
     style.textContent = `
-        :root {
-            --mc-bg: ${theme.backgroundColor};
-            --mc-card-bg: ${theme.cardBackgroundColor};
-            --mc-text: ${theme.textColor};
-            --mc-text-secondary: ${theme.secondaryTextColor};
-            --mc-accent: ${theme.accentColor};
-            --mc-success: ${theme.successColor};
-            --mc-warning: ${theme.warningColor};
-            --mc-error: ${theme.errorColor};
-            --mc-border: ${theme.borderColor};
-            --primary: ${theme.primaryColor};
-            --success: ${theme.successButtonColor};
-            --warning: ${theme.warningButtonColor};
-            --danger: ${theme.dangerButtonColor};
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .minecraft-server-checker {
             font-family: 'Minecraft', 'Minecraftia', monospace;
-        }
-
-        body {
-            background-color: var(--mc-bg);
-            color: var(--mc-text);
-            padding: 20px;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        .container {
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--mc-accent);
-            text-shadow: 0 0 5px rgba(0, 163, 232, 0.5);
-        }
-
-        .controls {
-            margin-bottom: 20px;
-        }
-
-        .server-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .server-card {
-            background-color: var(--mc-card-bg);
-            border-radius: 8px;
-            border: 1px solid var(--mc-border);
             padding: 20px;
+        }
+    
+        .minecraft-server-checker .server-card {
+            background-color: ${theme.cardBackgroundColor};
+            border-radius: 8px;
+            border: 1px solid ${theme.borderColor};
+            padding: 20px;
+            margin-bottom: 20px;
             position: relative;
             transition: transform 0.2s ease;
         }
-
-        .server-card:hover {
+    
+        .minecraft-server-checker .server-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
-
-        .server-header {
+    
+        .minecraft-server-checker .server-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid var(--mc-border);
+            border-bottom: 1px solid ${theme.borderColor};
         }
-
-        .server-name {
+    
+        .minecraft-server-checker .server-name {
             font-size: 1.2rem;
             font-weight: bold;
+            color: ${theme.textColor};
         }
-
-        .server-status {
+    
+        .minecraft-server-checker .server-status {
             padding: 5px 10px;
             border-radius: 4px;
             font-size: 0.9rem;
@@ -194,135 +141,128 @@ function initMinecraftServerChecker(config = {}) {
             align-items: center;
             justify-content: center;
         }
-
-        .status-online {
-            background-color: var(--mc-success);
+    
+        .minecraft-server-checker .status-online {
+            background-color: ${theme.successColor};
             color: #000;
         }
-
-        .status-offline {
-            background-color: var(--mc-error);
+    
+        .minecraft-server-checker .status-offline {
+            background-color: ${theme.errorColor};
             color: #000;
         }
-
-        .server-address {
+    
+        .minecraft-server-checker .server-address {
             font-size: 0.9rem;
-            color: var(--mc-text-secondary);
+            color: ${theme.secondaryTextColor};
             margin-bottom: 15px;
         }
-
-        .server-motd {
+    
+        .minecraft-server-checker .server-motd {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 15px;
-            font-family: 'Minecraft', 'Minecraftia', monospace;
             white-space: pre-line;
         }
-
-        .server-info {
+    
+        .minecraft-server-checker .server-info {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 15px;
         }
-
-        .info-item {
+    
+        .minecraft-server-checker .info-item {
             display: flex;
             flex-direction: column;
         }
-
-        .info-label {
+    
+        .minecraft-server-checker .info-label {
             font-size: 0.8rem;
-            color: var(--mc-text-secondary);
+            color: ${theme.secondaryTextColor};
             margin-bottom: 5px;
         }
-
-        .info-value {
+    
+        .minecraft-server-checker .info-value {
             font-size: 1rem;
         }
-
-        .info-value.green {
-            color: var(--mc-success);
+    
+        .minecraft-server-checker .info-value.green {
+            color: ${theme.successColor};
         }
-
-        .info-value.orange {
-            color: var(--mc-warning);
+    
+        .minecraft-server-checker .info-value.orange {
+            color: ${theme.warningColor};
         }
-
-        .info-value.red {
-            color: var(--mc-error);
+    
+        .minecraft-server-checker .info-value.red {
+            color: ${theme.errorColor};
         }
-
-        .info-value.blue {
-            color: var(--mc-accent);
+    
+        .minecraft-server-checker .info-value.blue {
+            color: ${theme.accentColor};
         }
-
-        .server-delay {
+    
+        .minecraft-server-checker .server-delay {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 15px;
         }
-
-        .last-updated {
+    
+        .minecraft-server-checker .last-updated {
             font-size: 0.8rem;
-            color: var(--mc-text-secondary);
+            color: ${theme.secondaryTextColor};
             text-align: right;
             margin-top: 10px;
         }
-
-        .hidden {
+    
+        .minecraft-server-checker .hidden {
             display: none;
         }
-
-        .loading {
+    
+        .minecraft-server-checker .loading {
             display: inline-block;
             width: 20px;
             height: 20px;
             border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top-color: var(--mc-accent);
+            border-top-color: ${theme.accentColor};
             animation: spin 1s ease-in-out infinite;
         }
-
+    
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
-        .server-form {
+    
+        .minecraft-server-checker .server-form {
             display: flex;
             margin-bottom: 20px;
         }
-
-        .server-form input {
+    
+        .minecraft-server-checker .server-form input {
             flex: 1;
             padding: 10px;
-            border: 1px solid var(--mc-border);
+            border: 1px solid ${theme.borderColor};
             background-color: rgba(255, 255, 255, 0.1);
-            color: var(--mc-text);
+            color: ${theme.textColor};
             border-radius: 4px 0 0 4px;
             font-family: 'Minecraft', 'Minecraftia', monospace;
         }
-
-        .server-form button {
+    
+        .minecraft-server-checker .server-form button {
             padding: 10px 15px;
-            background-color: var(--mc-accent);
+            background-color: ${theme.accentColor};
             color: white;
             border: none;
             border-radius: 0 4px 4px 0;
             cursor: pointer;
             font-family: 'Minecraft', 'Minecraftia', monospace;
         }
-
-        .server-form button:hover {
+    
+        .minecraft-server-checker .server-form button:hover {
             background-color: #0086C3;
-        }
-
-        .api-source {
-            font-size: 0.9em;
-            color: var(--mc-text-secondary);
-            margin-top: 4px;
         }
     `;
     document.head.appendChild(style);
