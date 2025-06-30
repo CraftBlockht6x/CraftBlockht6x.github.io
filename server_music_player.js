@@ -47,7 +47,6 @@ style.textContent = `
     background: rgba(20, 20, 35, 0.95);
     backdrop-filter: blur(10px);
     padding: 5px;
-    border-radius: 0 5px 0 0;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
     max-height: 0;
     overflow: hidden;
