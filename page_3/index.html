@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>雨云AI五子棋</title>
+    <meta name="viewport" content="width=500px, initial-scale=0.69, maximum-scale=1, user-scalable=0;">
+    <link rel="stylesheet" type="text/css" href="./main.css">
+</head>
+<body>
+    <h3 id="result-wrap" style="text-align:center!important;font-size: 30px;">--雨云AI五子棋--</h3>
+    <canvas id="chess" width="450px" height="450px"></canvas>
+    <div class="btn-wrap" style="text-align:center!important;">
+        <div id="restart" class="btn">
+            <span style="font-size: 30px;">重新开始</span>
+        </div>
+        <div id="goback" class="btn unable">
+            <span style="font-size: 30px;">撤销操作</span>
+        </div>
+        <div id="return" class="btn unable">
+            <span style="font-size: 30px;">取消撤销</span>
+        </div>
+        <div id="hint" class="btn">
+            <span style="font-size: 30px;">操作提示</span>
+        </div>
+    </div>
+    <script type="text/javascript" src="./main.js" charset="utf-8"></script>
+    <!-- 公告开始 -->
+    <div>
+        <div class="web_notice" style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.3);z-index: 99999;">
+            <div style="position: fixed;top: 50%;left: 50%;width: 350px;background: #FFF;transform: translate(-50%, -50%);border-radius: 40px;padding: 50px 40px;">
+                <h3 style="font-weight:10px; bold;text-align: center;font-size: 40px;">广告</h3>
+                <div style="font-: 16px;margin-top: 26px;line-height: 40px;color: #999;font-size: 25px;text-align:center">
+                    <a href="https://www.rainyun.com/MTY5ODI0_"><img src="rainyun.png" style="width:100px;margin-left:5px;margin-right:5px;vertical-align:middle;margin-bottom: 7px"></a><br>新一代云服务提供商</br>新用户可领5折优惠券<br>各类云产品均可白嫖</div>
+                <a style="display: block;background: #98a3ff;color: #FFF;text-align: center;font-weight: bold;font-size: 25px;line-height: 50px;margin: 0 auto;margin-top: 45px;border-radius: 32px;width: 80%;" onclick="window.location.href='https://www.rainyun.com/MTY5ODI0_'">了解一下</a>
+                <a style="display: block;background: #98a3ff;color: #FFF;text-align: center;font-weight: bold;font-size: 25px;line-height: 50px;margin: 0 auto;margin-top: 10px;border-radius: 32px;width: 80%;" onclick="javascript:document.querySelector('.web_notice').remove()">取消</a>
+            </div>
+        </div>
+    </div>
+    <!-- 公告结束，此段可删除 -->
+    <p><a href="https://icp.gov.moe/?keyword=20250403" target="_blank">萌ICP备20250403号</a></p>
+
+</body>
+</html>

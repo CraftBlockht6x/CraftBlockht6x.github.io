@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder/Decoder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Base64 Encoder/Decoder</h1>
+        <div class="section">
+            <h2>Text Encoder/Decoder</h2>
+            <textarea id="textInput" placeholder="Enter coded text here,encoded text will be displayed here..."></textarea>
+            <button onclick="encodeText()">Encode</button>
+            <button onclick="decodeText()">Decode</button>
+            <button onclick="copyToClipboard('textInput')">Copy</button>
+            <textarea id="textOutput" placeholder="Enter decoded text here,decoded text will be displayed here..."></textarea>
+            <button onclick="copyToClipboard('textOutput')">Copy</button>
+        </div>
+        <div class="section">
+            <h2>Image Encoder/Decoder</h2>
+            <input type="file" id="imageInput" accept="image/*">
+            <button onclick="encodeImage()">Encode</button>
+            <textarea id="base64Input" placeholder="Enter base64 string here..."></textarea>
+            <button onclick="decodeImage()">Decode</button>
+            <button onclick="copyToClipboard('base64Input')">Copy</button>
+            <div id="imageOutput"></div>
+        </div>
+        <div class="section">
+            <h2>File Encoder/Decoder</h2>
+            <input type="file" id="fileInput" accept="*/*">
+            <button onclick="encodeFile()">Encode</button>
+            <textarea id="fileBase64Input" placeholder="Enter base64 string here..."></textarea>
+            <button onclick="decodeFile()">Decode</button>
+            <button onclick="copyToClipboard('fileBase64Input')">Copy</button>
+            <input type="text" id="customFileName" placeholder="Enter custom file name (optional)">
+            <div id="fileOutput"></div>
+        </div>
+
+    </div>
+    <footer>
+        <p>The website is already running <span id="time"></span></p>
+        <p>&copy; 2024-<span id="currentYear"></span> | Base64 Encoder/Decoder</p>
+        <p><a href="https://icp.gov.moe/?keyword=20250403" target="_blank">萌ICP备20250403号</a></p>
+    </footer>
+    <script>
+        // 获取当前年份
+        const currentYear = new Date().getFullYear();
+        
+        // 将当前年份显示在页面上
+        document.getElementById('currentYear').textContent = currentYear;
+    </script>
+    <script>
+        function time() {
+            window.setTimeout("time()", 1000);
+            var seconds = 1000
+            var minutes = seconds * 60
+            var hours = minutes * 60
+            var days = hours * 24
+            var years = days * 365
+            var today = new Date()
+            var todayYear = today.getFullYear()
+            var todayMonth = today.getMonth() + 1
+            var todayDate = today.getDate()
+            var todayHour = today.getHours()
+            var todayMinute = today.getMinutes()
+            var todaySecond = today.getSeconds()
+            
+            // 设置网站的建立时间
+            var t1 = Date.UTC(2024, 11, 10, 8, 42, 35)
+            var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond)
+            var diff = t2 - t1
+            var diffYears = Math.floor(diff / years)
+            var diffDays = Math.floor((diff / days) - diffYears * 365)
+            var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours)
+            var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes)
+            var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+                minutes) / seconds)
+                
+            // 将网站运行时间显示到页面上
+            document.getElementById("time").innerHTML = diffYears + " year " + diffDays + " day " + diffHours + " hour " + diffMinutes + " minute " + diffSeconds + " second "
+        }
+        time()
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
