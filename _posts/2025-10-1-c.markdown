@@ -1,0 +1,13 @@
+---
+layout:     post
+title:      "月相观察"
+subtitle:   "赏月、生活、记录"
+date:       2025-10-01 19:47:25
+author:     "小乐"
+header-img: "img/202510/20251001.jpg"  # 请替换为你的图片路径
+catalog: true
+tags:
+    - 生活感悟
+---
+
+## 第一天
