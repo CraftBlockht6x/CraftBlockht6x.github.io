@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小乐的个人网站</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>小乐的个人网站</h1>
+    </header>
+    <main>
+        <section class="intro">
+            <h2>关于小乐</h2>
+            <p>小乐是一位热爱编程和设计的开发者，擅长网页前端开发。在这个网站上，你可以看到小乐制作的各种各样的网站作品，以及它们的入口链接。</p>
+        </section>
+        <section class="box">
+            <h2>资本主义的发展历史</h2>
+            <a href="https://craftblockht6x.github.io/page_1">访问网站1</a>
+            <p>这是一个资本主义的发展历史的论文，经过PaperGe查重检测，查重率3.4%。</p>
+        </section>
+        <section class="box">
+            <h2>base64编码解码</h2>
+            <a href="https://craftblockht6x.github.io/page_2">访问网站2</a>
+            <p>这是一个base64编码和解码的工具，支持文本和图片的编码与解码。</p>
+        </section>
+        <section class="box">
+            <h2>雨云AI智能五子棋</h2>
+            <a href="https://craftblockht6x.github.io/page_3/">访问网站3</a>
+            <p>这是小乐基于他人的源码开发的AI智能五子棋，修复了一些bug和添加了新功能。</p>
+        </section>
+        <section class="box">
+            <h2>羊村守护者系列音乐行为包</h2>
+            <a href="https://craftblockht6x.github.io/sheep_op_pack/">访问网站4</a>
+            <p>这是小乐开发的《喜羊羊与灰太狼》羊村守护者系列音乐资源包，用于Minecraft游戏。</p>
+        </section>
+        <section class="box">
+            <h2>AI智能中国象棋</h2>
+            <a href="https://craftblockht6x.github.io/page_4/">访问网站6</a>
+            <p>这是由lita.eu.org开发的</p>
+        </section>
+        <section class="box">
+            <h2>网页源代码查看器</h2>
+            <a href="https://craftblockht6x.github.io/page_5/">访问网站7</a>
+            <p>这是小乐开发的html网页源代码查看器</p>
+        </section>
+
+        <!-- 更多网站链接和简介可以按照上面的格式添加 -->
+    </main>
+    <footer>
+        <p>网站已运行<span id="time"></span></p>
+        <p>&copy; 2024-<span id="currentYear"></span> | 小乐的个人网站</p>
+        <p><a href="https://icp.gov.moe/?keyword=20250403" target="_blank">萌ICP备20250403号</a></p>
+    </footer>
+     <script>
+  // 获取当前年份
+  const currentYear = new Date().getFullYear();
+  
+  // 将当前年份显示在页面上
+  document.getElementById('currentYear').textContent = currentYear;
+</script>
+        <script>
+function time() {
+    window.setTimeout("time()", 1000);
+    var seconds = 1000
+    var minutes = seconds * 60
+    var hours = minutes * 60
+    var days = hours * 24
+    var years = days * 365
+    var today = new Date()
+    var todayYear = today.getFullYear()
+    var todayMonth = today.getMonth() + 1
+    var todayDate = today.getDate()
+    var todayHour = today.getHours()
+    var todayMinute = today.getMinutes()
+    var todaySecond = today.getSeconds()
+    
+    // 设置网站的建立时间
+    var t1 = Date.UTC(2024, 11, 10, 8, 42, 35)
+    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond)
+    var diff = t2 - t1
+    var diffYears = Math.floor(diff / years)
+    var diffDays = Math.floor((diff / days) - diffYears * 365)
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours)
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes)
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+        minutes) / seconds)
+        
+    // 将网站运行时间显示到页面上
+    document.getElementById("time").innerHTML = diffYears + "年" + diffDays + "天" + diffHours + "小时" + diffMinutes + "分钟" + diffSeconds + "秒"
+}
+time()
+</script>
+</body>
+</html>
