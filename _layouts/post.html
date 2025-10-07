@@ -170,4 +170,23 @@ layout: default
         }
     }
 </style>
+<script>
+// 检查认证状态
+fetch('https://mtcxlg6x.cn-nb1.rainapp.top/auth/check', {
+    credentials: 'include'
+})
+.then(response => {
+    if (response.ok) {
+        // 已认证，加载图片
+        const img = new Image();
+        img.src = 'https://mtcxlg6x.cn-nb1.rainapp.top/proxy/image/2025-10-01-c/day5_1.jpg';
+        img.crossOrigin = 'use-credentials';
+        document.body.appendChild(img);
+    } else {
+        // 未认证，提示登录
+        alert('请先登录 mtcxlg6x.cn-nb1.rainapp.top 来访问图片');
+        window.open('https://mtcxlg6x.cn-nb1.rainapp.top/login', '_blank');
+    }
+});
+</script>
 {% endif %}
