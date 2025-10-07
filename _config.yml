@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: craftblockht6x@outlook.com
 description: "这里是小乐的个人网站，一起探索美好吧"
 keyword: "小乐, Xiaole小乐, Xiaole, 小乐的博客, Xiaole Blog, 博客, 个人网站, 互联网, Web, JavaScript, React, React Native, 前端, 设计"
-url: "http://127.0.0.1:4000/" # your host, for absolute URL
+url: "craftblockht6x.github.io" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
