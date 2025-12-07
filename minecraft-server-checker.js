@@ -2,7 +2,7 @@ function initMinecraftServerChecker(config = {}) {
     // 默认配置
     const defaultConfig = {
         containerId: 'minecraft-server-checker',
-        defaultServers: [{ address: "jm.rainplay.cn:59954" }],
+        defaultServers: [{ address: "craftblockplay.chaxil.top:59954" }],
         displaySettings: {
             motd: true,
             version: true,
