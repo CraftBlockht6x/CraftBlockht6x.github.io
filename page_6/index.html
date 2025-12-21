@@ -468,7 +468,7 @@
         <div class="control-panel">
             <div class="control-group">
                 <label for="accSlider">🎚️ 调节电梯加速度 a (m/s²)：</label>
-                <input type="range" class="acc-slider" id="accSlider" min="-10" max="10" step="0.01" value="0">
+                <input type="range" class="acc-slider" id="accSlider" min="-100" max="100" step="0.01" value="0">
                 <div class="acc-value">当前加速度：<span id="accValue">0.00</span> m/s²</div>
             </div>
 
@@ -497,7 +497,7 @@
     <script>
         // 物理常量定义
         const g = 9.8; // 重力加速度 (m/s²)
-        const mass = 60; // 物体质量 (kg)
+        const mass = 50; // 物体质量 (kg)
         const gravity = mass * g; // 物体重力 (N)
         // 力的可视化缩放比例（控制箭头长度）
         const forceScale = 0.2; 
