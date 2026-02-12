@@ -74,8 +74,8 @@ ga_domain: huangxuan.me
 
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "要做一个有 swag 的程序员 <br> React Team @ Meta"
-sidebar-avatar: https://github.com/Huxpro.png # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: '小乐的个人网站'
+sidebar-avatar:  # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
@@ -91,10 +91,10 @@ page-mathjax: false
 # Friends
 friends:
    [
-     { title: "洪江市政府", href: "http://www.hjs.gov.cn/" },
-     { title: "小乐的个人网站", href: "https://craftblockht6x.github.io/web/" },
+     # { title: "洪江市政府", href: "http://www.hjs.gov.cn/" },
+     { title: "小乐的个人网站", href: "https://blog.chaxil.top/web/" },
      { title: "图床", href: "https://mtcxlg6x.cn-nb1.rainapp.top/" },
-    # { title: "Sherry Woo", href: "https://sherrywoo.me/" },
+     { title: "萌ICP备20250403号", href: "https://icp.gov.moe/?keyword=20250403" },
     # { title: "SmdCn", href: "http://blog.smdcn.net" },
     # { title: "JiyinYiyong", href: "http://tiye.me/" },
     # { title: "DHong Say", href: "http://dhong.co" },
