@@ -8,56 +8,71 @@ style.textContent = `
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
+    color: #333;
 }
 
 .server_music_player .music-player {
     position: fixed;
-    left: 10px;
-    bottom: 0;
-    z-index: 100;
-    transition: all 1.0s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    width: 250px;
+    left: -260px; /* 收缩时大部分隐藏在屏幕外，只露出20px */
+    bottom: 10px;
+    z-index: 10;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    width: 230px;
     max-width: 60vw;
     font-size: 10px;
 }
 
+.server_music_player .music-player.expanded {
+    left: 10px; /* 展开时距离左侧10px */
+}
+
 .server_music_player .player-tab {
-    background: linear-gradient(to right, #ff9966, #ff5e62);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px 10px 0 0;
+    background: linear-gradient(to right, #f5f5f5, #e0e0e0);
+    color: #555;
+    padding: 15px 10px;
+    border-radius: 0 10px 10px 0; /* 右侧圆角 */
     font-size: 0.9rem;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    justify-content: flex-end; /* 图标靠右 */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    width: 50px; /* 收缩时露出的宽度 */
+    position: absolute;
+    right: -50px; /* 将tab放在播放器右侧 */
+    top: 0;
+    height: 100%;
+    writing-mode: vertical-rl; /* 文字竖排 */
+    text-orientation: mixed;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .server_music_player .player-tab span {
-    font-weight: 300;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .server_music_player .player-tab i {
-    transition: transform 1.0s ease;
+    transition: transform 0.5s ease;
+    color: #666;
 }
 
 .server_music_player .player-panel {
-    background: rgba(20, 20, 35, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     padding: 5px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.4s ease;
-}
-
-.server_music_player .music-player.expanded .player-panel {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
     max-height: 600px;
     opacity: 1;
-    padding: 20px;
+    border-radius: 0 12px 12px 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.server_music_player .music-player.expanded .player-tab {
+    background: linear-gradient(to right, #e0e0e0, #d0d0d0);
 }
 
 .server_music_player .music-player.expanded .player-tab i {
@@ -69,24 +84,25 @@ style.textContent = `
     align-items: center;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .server_music_player .album-cover {
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: linear-gradient(45deg, #ff9966, #ff5e62);
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .server_music_player .album-cover i {
     font-size: 1.5rem;
-    color: white;
+    color: #666;
 }
 
 .server_music_player .current-song-info {
@@ -97,16 +113,18 @@ style.textContent = `
     font-size: 1.2em;
     font-weight: 600;
     margin-bottom: 5px;
+    color: #333;
 }
 
 .server_music_player .current-song-artist {
     font-size: 1em;
-    opacity: 0.8;
+    opacity: 0.7;
     margin-bottom: 8px;
+    color: #666;
 }
 
 .server_music_player .progress-container {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.08);
     height: 4px;
     border-radius: 5px;
     margin: 15px 0;
@@ -115,7 +133,7 @@ style.textContent = `
 }
 
 .server_music_player .progress-bar {
-    background: linear-gradient(to right, #ff9966, #ff5e62);
+    background: linear-gradient(to right, #c0c0c0, #808080);
     height: 100%;
     width: 30%;
     border-radius: 5px;
@@ -131,7 +149,8 @@ style.textContent = `
     height: 11px;
     background: white;
     border-radius: 50%;
-    box-shadow: 0 0 5px rgba(255, 153, 102, 0.8);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid #ccc;
 }
 
 .server_music_player .time-info {
@@ -140,6 +159,7 @@ style.textContent = `
     font-size: 0.8rem;
     opacity: 0.7;
     margin-bottom: 20px;
+    color: #666;
 }
 
 .server_music_player .controls {
@@ -151,13 +171,13 @@ style.textContent = `
 }
 
 .server_music_player .control-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.05);
     border: none;
     width: 30px;
     height: 30px;
     font-size: 0.9rem;
     border-radius: 50%;
-    color: white;
+    color: #555;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -166,19 +186,21 @@ style.textContent = `
 }
 
 .server_music_player .control-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
     transform: scale(1.1);
+    color: #333;
 }
 
 .server_music_player .control-btn.play-pause {
     width: 30px;
     height: 30px;
-    background: linear-gradient(to right, #ff9966, #ff5e62);
+    background: linear-gradient(to right, #e0e0e0, #c0c0c0);
+    color: #333;
 }
 
 .server_music_player .control-btn.play-pause:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 153, 102, 0.5);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .server_music_player .volume-container {
@@ -190,7 +212,7 @@ style.textContent = `
 
 .server_music_player .volume-container i {
     font-size: 1.2rem;
-    color: #ff9966;
+    color: #888;
 }
 
 .server_music_player .volume-slider {
@@ -198,7 +220,7 @@ style.textContent = `
     -webkit-appearance: none;
     height: 4px;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.08);
     outline: none;
 }
 
@@ -209,16 +231,17 @@ style.textContent = `
     border-radius: 50%;
     background: white;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(255, 153, 102, 0.8);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid #ccc;
 }
 
 .server_music_player .playlist-select {
     width: 100%;
     padding: 10px 12px;
-    background: rgba(255, 255, 255, 0.08);
-    border: none;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 8px;
-    color: white;
+    color: #333;
     font-size: 1rem;
     margin-top: 10px;
     cursor: pointer;
@@ -226,14 +249,24 @@ style.textContent = `
 }
 
 .server_music_player .playlist-select option {
-    background: rgba(20, 20, 35, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     padding: 10px;
+    color: #333;
 }
 
 @media (max-width: 768px) {
     .server_music_player .music-player {
         width: 200px;
+        left: -200px; /* 移动端收缩位置调整 */
+    }
+    
+    .server_music_player .music-player.expanded {
         left: 10px;
+    }
+    
+    .server_music_player .player-tab {
+        width: 8px;
+        right: -8px;
     }
 }
 `;
@@ -248,8 +281,6 @@ document.body.appendChild(playerContainer);
 playerContainer.innerHTML = `
 <div class="music-player">
     <div class="player-tab">
-        <span><i class="fas fa-music"></i> 音乐播放器</span>
-        <i class="fas fa-chevron-up"></i>
     </div>
     <div class="player-panel">
         <div class="now-playing">
@@ -450,9 +481,24 @@ document.addEventListener('DOMContentLoaded', function() {
         playSong();
     });
     
-    // 播放器展开/收起
-    playerTab.addEventListener('click', () => {
+    // 播放器展开/收起 - 点击tab或播放器面板外部
+    playerTab.addEventListener('click', (e) => {
+        e.stopPropagation();
         musicPlayer.classList.toggle('expanded');
+    });
+    
+    // 点击页面其他地方收起播放器
+    document.addEventListener('click', (e) => {
+        if (musicPlayer.classList.contains('expanded') && 
+            !musicPlayer.contains(e.target)) {
+            musicPlayer.classList.remove('expanded');
+        }
+    });
+    
+    // 阻止播放器面板内部点击事件冒泡
+    const playerPanel = document.querySelector('.server_music_player .player-panel');
+    playerPanel.addEventListener('click', (e) => {
+        e.stopPropagation();
     });
 });
 
