@@ -91,9 +91,7 @@ page-mathjax: false
 # Friends
 friends:
    [
-     # { title: "洪江市政府", href: "http://www.hjs.gov.cn/" },
      { title: "小乐的个人网站", href: "https://blog.chaxil.top/web/" },
-     { title: "图床", href: "https://mtcxlg6x.cn-nb1.rainapp.top/" },
      { title: "萌ICP备20250403号", href: "https://icp.gov.moe/?keyword=20250403" },
     # { title: "SmdCn", href: "http://blog.smdcn.net" },
     # { title: "JiyinYiyong", href: "http://tiye.me/" },
