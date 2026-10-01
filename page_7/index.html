@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The City Mouse and the Country Mouse — A Fable About Happiness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:opsz,wght@7..96,400;7..96,500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f6ecd9;
+    --paper-dk:#efe1c6;
+    --ink:#3b2b1e;
+    --ink-soft:#6b573f;
+    --city:#c4452c;       /* vermillion — city */
+    --country:#4a7c3f;    /* green — country */
+    --gold:#c99a3f;
+    --line:#d9c6a3;
+    --shadow:#bda77f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(1200px 500px at 15% -5%, rgba(201,154,63,.18), transparent 60%),
+      radial-gradient(1000px 500px at 90% 10%, rgba(196,69,44,.10), transparent 55%),
+      var(--paper);
+    color:var(--ink);
+    font-family:"DM Sans",ui-sans-serif,system-ui,sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .texture{
+    position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* ---------- HERO ---------- */
+  header{position:relative;padding:70px 0 30px;text-align:center}
+  .kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    letter-spacing:.35em;text-transform:uppercase;font-size:12px;color:var(--ink-soft);
+    margin-bottom:22px;
+  }
+  .kicker::before,.kicker::after{content:"";width:34px;height:1px;background:var(--line)}
+  h1{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:600;
+    font-size:clamp(2.4rem,6.2vw,4.4rem);
+    line-height:1.05;
+    letter-spacing:-.01em;
+  }
+  h1 .city{color:var(--city);font-style:italic}
+  h1 .country{color:var(--country);font-style:italic}
+  .hero-sub{
+    font-family:"Fraunces",Georgia,serif;font-style:italic;
+    font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--gold);
+    margin-top:16px;
+  }
+  .hero-rule{
+    width:min(560px,80%);height:0;
+    border-top:2px solid var(--line);
+    margin:30px auto 0;
+    position:relative;
+  }
+  .hero-rule::after{
+    content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    background:var(--paper);padding:0 14px;color:var(--gold);font-size:15px;
+  }
+
+  /* mice row */
+  .mice{display:flex;justify-content:center;gap:clamp(10px,8vw,64px);margin-top:34px}
+  .mouse{flex:0 0 auto;animation:float 6s ease-in-out infinite}
+  .mouse:nth-child(2){animation-delay:1.4s}
+  .mouse .cap{
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);
+    text-align:center;margin-top:6px;
+  }
+  .mouse figure{line-height:0}
+  .mouse svg{width:clamp(110px,26vw,170px);height:auto;overflow:visible}
+  .mouse.flag green .body{fill:#4a7c3f}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  /* ---------- STORY ---------- */
+  section.story{padding:40px 0 60px}
+  .chapter-note{
+    font-family:"Fraunces",serif;font-style:italic;text-align:center;
+    color:var(--ink-soft);font-size:1.05rem;margin:50px auto 0;max-width:560px;
+  }
+  blockquote.text{
+    font-family:"Fraunces",Georgia,serif;
+    font-size:clamp(1.05rem,2.3vw,1.22rem);
+    color:var(--ink);
+    border-left:3px solid var(--gold);
+    padding:4px 0 4px 22px;
+    margin:22px 0;
+    font-style:italic;
+  }
+  p{font-family:"Fraunces",Georgia,serif;font-size:clamp(1.05rem,2.3vw,1.2rem)}
+  .drop::first-letter{
+    font-size:2.9em;float:left;line-height:.85;padding-right:10px;color:var(--city);
+    font-weight:600;
+  }
+  .narr{color:var(--ink-soft);font-style:italic;opacity:.9}
+
+  /* dialogue speeches */
+  .speech{display:flex;gap:16px;margin:20px 0;align-items:flex-start}
+  .speech .char{
+    flex:0 0 46px;font-size:30px;line-height:1;
+    width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+  }
+  .speech.city .char{background:var(--city);color:#fff;box-shadow:0 4px 0 #93321f}
+  .speech.country .char{background:var(--country);color:#fff;box-shadow:0 4px 0 #33582b}
+  .speech .bubble{
+    flex:1;background:#fff;border:2px solid var(--line);
+    border-radius:4px 20px 20px 20px;padding:14px 20px;position:relative;
+    box-shadow:0 6px 0 var(--shadow);
+  }
+  .speech.city .bubble{border-color:#d9a088}
+  .speech.country .bubble{border-color:#9cbf8f}
+  .speech .who{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    font-weight:500;margin-bottom:4px;
+  }
+  .speech.city .who{color:var(--city)}
+  .speech.country .who{color:var(--country)}
+  .speech .say{font-family:"Fraunces",serif;font-size:1.05rem}
+
+  /* scene card (kitchen dangerous action) */
+  .scene{
+    border:2px dashed var(--city);border-radius:18px;background:var(--paper-dk);
+    padding:20px 24px;margin:30px 0;
+  }
+  .scene .tag{
+    display:inline-block;background:var(--city);color:#fff;font-size:11px;
+    letter-spacing:.22em;text-transform:uppercase;padding:5px 14px;border-radius:999px;
+    margin-bottom:14px;
+  }
+  .scene p{font-size:1.05rem}
+
+  /* ---------- QUIZ ---------- */
+  .quiz-wrap{position:relative;padding:20px 20px 60px;background:
+    radial-gradient(800px 300px at 50% 0%, rgba(196,69,44,.12), transparent 60%)}
+  .quiz{
+    background:#fff;border:2px solid var(--ink);border-radius:22px;
+    box-shadow:10px 10px 0 var(--ink);padding:clamp(26px,5vw,46px);
+  }
+  .quiz h2{
+    font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.5rem,3.4vw,2.1rem);
+    display:flex;align-items:center;gap:12px;margin-bottom:8px;
+  }
+  .quiz h2 .qnum{
+    background:var(--gold);color:#fff;width:38px;height:38px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;
+    box-shadow:0 4px 0 #a97c2b;flex:0 0 auto;
+  }
+  .quiz .qtext{font-family:"Fraunces",serif;font-size:1.15rem;color:var(--ink-soft);margin-bottom:22px}
+  .options{display:grid;gap:14px}
+  .option{
+    border:2px solid var(--line);background:#fff;border-radius:14px;
+    padding:16px 20px;font-family:"Fraunces",serif;font-size:1.12rem;
+    display:flex;align-items:center;gap:14px;cursor:pointer;transition:.18s;
+    box-shadow:0 4px 0 var(--shadow);
+  }
+  .option .letter{
+    width:32px;height:32px;border-radius:50%;border:2px solid var(--ink);
+    display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;
+    font-family:"DM Sans";font-weight:500;flex:0 0 auto;color:var(--ink);
+  }
+  .option:hover{transform:translateY(-2px);border-color:var(--ink)}
+  .option.correct{background:var(--country);border-color:var(--country);color:#fff;box-shadow:0 4px 0 #33582b}
+  .option.correct .letter{background:#fff;color:var(--country);border-color:#fff}
+  .option.wrong{background:#e8d6d2;border-color:#c96f5a;box-shadow:none}
+  .option.wrong .letter{color:#a8543f}
+  .option.disabled{pointer-events:none;opacity:.8}
+  .option.correct .letter::after{content:" ✓";border:0}
+  .feedback{
+    margin-top:20px;display:none;padding:16px 20px;border-radius:14px;
+    font-family:"Fraunces",serif;font-size:1.02rem;
+  }
+  .feedback.show{display:block;animation:pop .35s ease}
+  .feedback.good{background:#e7f0dc;border:2px solid #7aa368;color:#2f5226}
+  .feedback.bad{background:#f6e3de;border:2px solid #cf7b64;color:#8a3e2d}
+  .feedback strong{font-weight:600}
+  @keyframes pop{0%{transform:scale(.96);opacity:0}100%{transform:scale(1);opacity:1}}
+  .reset{
+    margin-top:18px;background:transparent;border:2px solid var(--ink);color:var(--ink);
+    font-family:"DM Sans";font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    padding:9px 18px;border-radius:999px;cursor:pointer;transition:.15s;
+  }
+  .reset:hover{background:var(--ink);color:#fff}
+
+  footer{position:relative;text-align:center;padding:50px 24px 60px;color:var(--ink-soft);font-size:14px}
+  footer .orn{color:var(--gold);font-size:18px;margin-bottom:10px}
+  footer span{font-style:italic;font-family:"Fraunces",serif}
+
+  @media(max-width:520px){ .speech{flex-direction:column}.speech .char{margin-left:6px} }
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="texture"></div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header id="top">
+    <div class="kicker">A Fable About Happiness</div>
+    <h1>
+      The <span class="city">City</span> Mouse<br>
+      and the <span class="country">Country</span> Mouse
+    </h1>
+    <p class="hero-sub">chasing horns, towers, and the quiet taste of barley</p>
+    <div class="hero-rule"></div>
+
+    <div class="mice">
+      <div class="mouse">
+        <figure>
+          <svg viewBox="0 0 120 120" aria-label="Country mouse">
+            <g>
+              <ellipse cx="60" cy="78" rx="34" ry="26" fill="#4a7c3f"/>
+              <circle cx="60" cy="52" r="20" fill="#4a7c3f"/>
+              <circle cx="46" cy="46" r="7" fill="#4a7c3f"/>
+              <circle cx="74" cy="46" r="7" fill="#4a7c3f"/>
+              <circle cx="50" cy="46" r="10" fill="#9cbf8f"/>
+              <circle cx="78" cy="46" r="10" fill="#9cbf8f"/>
+              <g fill="#fff"><circle cx="54.5" cy="55" r="3.4"/><circle cx="66.5" cy="55" r="3.4"/></g>
+              <g fill="#3b2b1e"><circle cx="54" cy="55.6" r="1.7"/><circle cx="66" cy="55.6" r="1.7"/></g>
+              <ellipse cx="60" cy="63" rx="6" ry="4" fill="#8a8f8c"/>
+              <path d="M46 44 L34 30 M50 40 L40 26 M74 44 L86 30 M70 40 L80 26" stroke="#4a7c3f" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path d="M42 96 Q60 108 78 96" stroke="#3b2b1e" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path d="M92 70 Q100 66 104 58" stroke="#3b2b1e" stroke-width="4" stroke-linecap="round" fill="none"/>
+            </g>
+          </svg>
+        </figure>
+        <div class="cap">Country</div>
+      </div>
+
+      <div class="mouse">
+        <figure>
+          <svg viewBox="0 0 120 120" aria-label="City mouse">
+            <g>
+              <ellipse cx="60" cy="78" rx="34" ry="26" fill="#c4452c"/>
+              <circle cx="60" cy="52" r="20" fill="#c4452c"/>
+              <circle cx="46" cy="46" r="7" fill="#c4452c"/>
+              <circle cx="74" cy="46" r="7" fill="#c4452c"/>
+              <circle cx="50" cy="46" r="10" fill="#d98a70"/>
+              <circle cx="78" cy="46" r="10" fill="#d98a70"/>
+              <g fill="#fff"><circle cx="54.5" cy="55" r="3.4"/><circle cx="66.5" cy="55" r="3.4"/></g>
+              <g fill="#3b2b1e"><circle cx="54" cy="55.6" r="1.7"/><circle cx="66" cy="55.6" r="1.7"/></g>
+              <ellipse cx="60" cy="63" rx="6" ry="4" fill="#8a8f8c"/>
+              <path d="M46 44 L34 30 M50 40 L40 26 M74 44 L86 30 M70 40 L80 26" stroke="#c4452c" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path d="M42 96 Q60 108 78 96" stroke="#3b2b1e" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path d="M92 70 Q100 66 104 58" stroke="#3b2b1e" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <rect x="88" y="52" width="14" height="9" rx="2" fill="#3b2b1e"/>
+              <path d="M68 40 L74 34 L80 40 Z" fill="#3b2b1e"/>
+            </g>
+          </svg>
+        </figure>
+        <div class="cap">City</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STORY -->
+  <section class="story">
+
+    <p class="drop">
+      Once upon a time, there were two mice. One of them lived in the country,
+      and the other lived in the city. One day, the city mouse paid a visit to his
+      good friend in the country. He told the country mouse about life in the city
+      with great passion. <span class="narr">The country mouse was envious of city life.</span>
+    </p>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">Hey, buddy, this place is too outdated. You eat grains and barley
+        every day. Even the ants in my place would not eat them. Look at your house. I don't
+        even know how you could live here. Just come to the city with me for a visit. The cream
+        cakes there are piled up as high as a mountain, and the houses reach the sky.</div>
+      </div>
+    </div>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">Really? I can go with you to see the city?</div>
+      </div>
+    </div>
+
+    <p class="narr reveal">
+      The country mouse went to the city with the city mouse, who kept boasting about
+      the wonderful life in the city on their way.
+    </p>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">Did you know that people in the city all use cars? No one is willing
+        to walk. There is so much delicious food in the city. You will love it.</div>
+      </div>
+    </div>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">Um, I want to be in the city right now.</div>
+      </div>
+    </div>
+
+    <p class="narr reveal">
+      The two mice walked for a long time and finally arrived in the city.
+    </p>
+
+    <p class="reveal">
+      The country mouse stared in awe at the tall buildings. He did not want to blink, in case
+      he would miss some of these sights. Out of nowhere, a car zoomed by, almost running over them.
+    </p>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">Um, the cars are coming! Run away!</div>
+      </div>
+    </div>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">Huh? What is that monster?</div>
+      </div>
+    </div>
+
+    <p class="narr reveal">
+      After walking through many twisting roads and bending alleys, the city mouse and the
+      country mouse finally arrived at a kitchen.
+    </p>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">Look! This is a kitchen. There are cakes, roasted chickens, hams, cheese—
+        you can eat whatever you want. I eat this every day.</div>
+      </div>
+    </div>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">Wow, so much delicious food and my favorite cheese! You eat this every day?
+        You must be so happy.</div>
+      </div>
+    </div>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">Come on, eat and enjoy yourself.</div>
+      </div>
+    </div>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">Wow! Oh my! This is so delicious. The city is so great.</div>
+      </div>
+    </div>
+
+    <div class="scene reveal">
+      <span class="tag">⛔ Danger</span>
+      <p>
+        However, while the two mice were enjoying themselves, the cat guarding the kitchen
+        noticed them and ran towards them.
+      </p>
+    </div>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">Hey, hey! What are we running for?</div>
+      </div>
+    </div>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">If we do not run, the cat will eat us, because that delicious food
+        does not belong to us.</div>
+      </div>
+    </div>
+
+    <p class="narr reveal">
+      The two mice ran out of the kitchen. Before they could catch their breath, two dogs ran
+      towards them.
+    </p>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">Yeah, why is the dog also chasing us? Is it also because of the food?</div>
+      </div>
+    </div>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">Those dogs do not like to eat us. What they like is to feed us up.</div>
+      </div>
+    </div>
+
+    <p class="narr reveal">
+      The two mice managed to lose the dog and escape down a street. However, when the people on
+      the street saw them, they began to chase and hit them.
+    </p>
+
+    <blockquote class="text reveal">Oh my god! The stinking mice! Get out of here!</blockquote>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">Wow! The human beings are beating us as well. So this is your life in
+        the city? Aren't you always being chased by the cat, the dog, or humans?</div>
+      </div>
+    </div>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">Today was nothing. Sometimes people put mouse traps near the door. If you
+        touch one, you could lose your foot. Some people even place rat poison in the food.</div>
+      </div>
+    </div>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">That's fine. Just avoid them.</div>
+      </div>
+    </div>
+
+    <div class="speech city reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">City Mouse</div>
+        <div class="say">How could they stop chasing us? We just go back to the food.</div>
+      </div>
+    </div>
+
+    <div class="speech country reveal">
+      <div class="char">🐭</div>
+      <div class="bubble">
+        <div class="who">Country Mouse</div>
+        <div class="say">But I do not want to live in fear every day. I do not want to worry about
+        my life. Although the barley in the country is not as tasty as the cheese in the city, I can
+        live a free and easy life. Goodbye. I'm going back to the country. You may enjoy the scary
+        life in the city yourself.</div>
+      </div>
+    </div>
+
+    <p class="narr reveal">
+      Despite the fact that the city mouse kept persuading him to stay, the country mouse took his
+      luggage and went back to the country. <span class="narr">The city mouse thought sadly to itself,</span>
+      <blockquote class="text reveal">Alas, was the life in the country really so good?</blockquote>
+    </p>
+
+    <p class="chapter-note reveal">
+      ✦ &nbsp;&nbsp;The city glitters, but freedom and peace have a quiet taste of barley.&nbsp;&nbsp; ✦
+    </p>
+  </section>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-wrap">
+  <div class="wrap reveal" style="padding-bottom:0">
+    <div class="quiz">
+      <h2><span class="qnum">Q</span> Reading Comprehension</h2>
+      <p class="qtext" id="qtext">When the country mouse and the city mouse were eating cheese in the
+      kitchen, who chased after them?</p>
+
+      <div class="options" id="options">
+        <div class="option" data-answer="false">
+          <span class="letter">A</span> The dog.
+        </div>
+        <div class="option" data-answer="true">
+          <span class="letter">B</span> The cat.
+        </div>
+        <div class="option" data-answer="false">
+          <span class="letter">C</span> The man.
+        </div>
+      </div>
+
+      <div class="feedback" id="feedback"></div>
+      <button class="reset" id="reset" type="button">Try again</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="orn">✦ ✦ ✦</div>
+  <p>The City Mouse and the Country Mouse</p>
+  <p><span>A Classic Fable — retold for young readers of English.</span></p>
+</footer>
+
+<script>
+  // reveal on scroll
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // quiz logic
+  const options=[...document.querySelectorAll('.option')];
+  const fb=document.getElementById('feedback');
+  const reset=document.getElementById('reset');
+  let answered=false;
+  options.forEach(o=>{
+    o.addEventListener('click',()=>{
+      if(answered) return;
+      answered=true;
+      options.forEach(x=>x.classList.add('disabled'));
+      o.classList.add(o.dataset.answer==='true'?'correct':'wrong');
+      if(o.dataset.answer==='true'){
+        fb.className='feedback good show';
+        fb.innerHTML='<strong>Correct!</strong> It was the <strong>cat</strong> guarding the kitchen that chased after them. Well done!';
+      }else{
+        fb.className='feedback bad show';
+        fb.innerHTML='<strong>Not quite.</strong> Re-read the story — it was the <strong>cat</strong> guarding the kitchen that chased after them.';
+      }
+    });
+  });
+  reset.addEventListener('click',()=>{
+    options.forEach(o=>{o.classList.remove('correct','wrong','disabled')});
+    answered=false;fb.className='feedback';
+  });
+</script>
+</body>
+</html>
